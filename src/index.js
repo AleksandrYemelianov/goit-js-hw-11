@@ -61,12 +61,14 @@ async function handlerSearch (e) {
     }
 
     currentSearch = value;
-    page = 12;
+    page = 1;
     galleryEl.innerHTML = '';
 
     await renderData()
     observer.observe(infiniteScroll)
+
     setLightbox();
+    
 
 }
 
@@ -147,22 +149,22 @@ function setLightbox() {
    });
 }
 
-function onLoadPage(entries, observer) {
-    entries.forEach((entry) => { 
+async function onLoadPage(entries, observer) {
+    entries.forEach(async (entry) => {
         
         if (entry.isIntersecting) {
             page += 1;
+            
             if (page > totalPage) {
-                console.log('155NEN');
                 maxFoundMassage();
                 observer.unobserve(infiniteScroll);
                 return
             }
-            renderData();
+            await renderData();
             smoothScroll();
             lightbox.refresh();
-                }
-        })
+        }
+    });
 }
 
 

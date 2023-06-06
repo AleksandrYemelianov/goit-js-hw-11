@@ -76,6 +76,8 @@ button {
 .photo-card {
   box-shadow: 0px 1px 3px 1px #000000;
   max-width: 270px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .info {
